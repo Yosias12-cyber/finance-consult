@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finance Consult Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { background-color: #0b1120; color: #e2e8f0; }
+    .sidebar { background: linear-gradient(180deg, #1e293b, #0f172a); }
+    .card { background: #1e293b; border-radius: 1rem; }
+    .active-link { color: #3b82f6; font-weight: 600; }
+    .gallery img { border-radius: 1rem; transition: transform 0.3s; }
+    .gallery img:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body class="flex min-h-screen">
+
+  <!-- Sidebar -->
+  <aside class="sidebar w-64 p-6 flex flex-col justify-between">
+    <div>
+      <h1 class="text-2xl font-bold text-blue-400 mb-8">Finance Consult</h1>
+      <nav class="space-y-4">
+        <button class="menu-btn flex items-center space-x-3 hover:text-blue-400 active-link" data-target="dashboard"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
+        <button class="menu-btn flex items-center space-x-3 hover:text-blue-400" data-target="about"><i data-lucide="info"></i><span>About</span></button>
+        <button class="menu-btn flex items-center space-x-3 hover:text-blue-400" data-target="konsultasi"><i data-lucide="users"></i><span>Konsultasi</span></button>
+        <button class="menu-btn flex items-center space-x-3 hover:text-blue-400" data-target="customers"><i data-lucide="headphones"></i><span>Customer Care</span></button>
+        <button class="menu-btn flex items-center space-x-3 hover:text-blue-400" data-target="social"><i data-lucide="share-2"></i><span>Sosial Media</span></button>
+      </nav>
+    </div>
+    <div class="text-sm text-slate-400">© 2025 Finance Consult</div>
+  </aside>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <div class="flex-1 overflow-y-auto p-8 space-y-8">
+
+    <!-- Dashboard Section -->
+    <section id="dashboard">
+      <!-- Header -->
+      <div class="flex justify-between items-center">
+        <div>
+          <h2 class="text-3xl font-bold text-white">Selamat datang, Yosias 👋</h2>
+          <p class="text-slate-400">Dashboard Konsultasi Keuangan Anda</p>
+        </div>
+        <input type="text" placeholder="Cari sesuatu..." class="px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
+        <div class="card p-6"><p class="text-slate-400">Saldo Akun</p><h3 class="text-2xl font-bold text-white mt-2">$12,540.00</h3></div>
+        <div class="card p-6"><p class="text-slate-400">Total Investasi</p><h3 class="text-2xl font-bold text-green-400 mt-2">$34,290.00</h3></div>
+        <div class="card p-6"><p class="text-slate-400">Jadwal Konsultasi</p><h3 class="text-2xl font-bold text-blue-400 mt-2">3 sesi</h3></div>
+        <div class="card p-6"><p class="text-slate-400">Laporan Keuangan</p><h3 class="text-2xl font-bold text-purple-400 mt-2">6 laporan</h3></div>
+      </div>
+
+      <!-- Grafik Real-time -->
+      <div class="card p-6 mt-6">
+        <h3 class="text-lg font-semibold mb-4">Tren Keuangan Real-Time</h3>
+        <canvas id="financeChart" height="200"></canvas>
+      </div>
+
+      <!-- Kenapa Finance Consult -->
+      <div class="card p-6 mt-6">
+        <h3 class="text-lg font-semibold mb-4">Kenapa Finance Consult?</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <i data-lucide="shield" class="mx-auto mb-2 text-blue-400" width="36" height="36"></i>
+            <p>Amanah & Terpercaya</p>
+          </div>
+          <div class="text-center">
+            <i data-lucide="trending-up" class="mx-auto mb-2 text-green-400" width="36" height="36"></i>
+            <p>Meningkatkan Nilai Investasi</p>
+          </div>
+          <div class="text-center">
+            <i data-lucide="users" class="mx-auto mb-2 text-yellow-400" width="36" height="36"></i>
+            <p>Konsultasi Personal</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery Foto -->
+      <div class="card p-6 mt-6">
+        <h3 class="text-lg font-semibold mb-4">Gallery</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 gallery">
+          <img src="https://source.unsplash.com/200x150/?office" alt="Office">
+          <img src="https://source.unsplash.com/200x150/?team" alt="Team">
+          <img src="https://source.unsplash.com/200x150/?finance" alt="Finance">
+          <img src="https://source.unsplash.com/200x150/?meeting" alt="Meeting">
+        </div>
+      </div>
+
+      <!-- Riwayat Konsultasi -->
+      <div class="card p-6 mt-6">
+        <div class="flex justify-between mb-4">
+          <h3 class="text-lg font-semibold">Riwayat Konsultasi</h3>
+          <a href="#" class="text-blue-400 text-sm">Lihat semua</a>
+        </div>
+        <table class="w-full text-sm">
+          <thead class="text-slate-400 border-b border-slate-700">
+            <tr>
+              <th class="text-left py-2">Tanggal & Jam</th>
+              <th class="text-left">Konsultan</th>
+              <th class="text-left">Topik</th>
+              <th class="text-right">Status</th>
+            </tr>
+          </thead>
+          <tbody id="riwayatBody">
+            <tr class="border-b border-slate-800">
+              <td class="py-2">28 Okt 2025 10:00</td>
+              <td>Dr. Amanda</td>
+              <td>Perencanaan Investasi</td>
+              <td class="text-right text-green-400">Selesai</td>
+            </tr>
+            <tr class="border-b border-slate-800">
+              <td class="py-2">5 Nov 2025 14:30</td>
+              <td>Mr. Kelvin</td>
+              <td>Manajemen Utang</td>
+              <td class="text-right text-yellow-400">Proses</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="hidden">
+      <h2 class="text-3xl font-bold mb-4">About Finance Consult</h2>
+      <p class="text-slate-400 mb-4">Finance Consult hadir untuk membantu perencanaan keuangan Anda secara profesional dan terpercaya. Kami menyediakan berbagai layanan mulai dari investasi, manajemen utang, hingga perencanaan pensiun.</p>
+      <p class="text-slate-400">Visi: Menjadi partner keuangan terbaik bagi setiap individu. <br> Misi: Memberikan konsultasi personal, analisis akurat, dan solusi finansial terpercaya.</p>
+    </section>
+
+    <!-- Konsultasi Section -->
+    <section id="konsultasi" class="hidden">
+      <div class="card p-8 max-w-2xl mx-auto">
+        <h2 class="text-2xl font-bold mb-6 text-white">Formulir Konsultasi Keuangan</h2>
+        <form id="consultForm" class="space-y-4">
+          <div>
+            <label class="block text-slate-400 mb-2">Nama Lengkap</label>
+            <input required type="text" id="nama" class="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-2">Email</label>
+            <input required type="email" id="email" class="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-2">Topik Konsultasi</label>
+            <select id="topik" required class="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+              <option value="">Pilih Topik...</option>
+              <option>Investasi</option>
+              <option>Tabungan & Pengeluaran</option>
+              <option>Manajemen Utang</option>
+              <option>Perencanaan Pensiun</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-2">Deskripsi Singkat</label>
+            <textarea id="deskripsi" required rows="4" class="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition">Kirim Konsultasi</button>
+        </form>
+        <div id="successMsg" class="hidden mt-6 text-center text-green-400 font-semibold">
+          ✅ Konsultasi berhasil dikirim! Terima kasih telah menghubungi kami.
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Care Section -->
+    <section id="customers" class="hidden">
+      <h2 class="text-3xl font-bold mb-4">Customer Care</h2>
+      <p class="text-slate-400 mb-2">Layanan bantuan pelanggan tersedia 24/7. Hubungi kami melalui email, telepon, atau chat live untuk solusi cepat.</p>
+      <ul class="list-disc list-inside text-slate-400">
+        <li>Email: support@financeconsult.com</li>
+        <li>Telepon: +62 812 3456 7890</li>
+        <li>Live Chat: Tersedia di website</li>
+      </ul>
+    </section>
+
+    <!-- Social Media Section -->
+    <section id="social" class="hidden">
+      <h2 class="text-3xl font-bold mb-4">Sosial Media</h2>
+      <ul class="list-disc list-inside text-slate-400">
+        <li><a href="#" class="text-blue-400">Instagram</a></li>
+        <li><a href="#" class="text-blue-400">LinkedIn</a></li>
+        <li><a href="#" class="text-blue-400">Facebook</a></li>
+      </ul>
+    </section>
+
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Menu Navigation
+    const menuBtns = document.querySelectorAll(".menu-btn");
+    const sections = document.querySelectorAll("section");
+
+    menuBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-target");
+        sections.forEach(sec => sec.id === target ? sec.classList.remove("hidden") : sec.classList.add("hidden"));
+        menuBtns.forEach(b => b.classList.remove("active-link"));
+        btn.classList.add("active-link");
+      });
+    });
+
+    // Konsultasi form
+    const form = document.getElementById("consultForm");
+    const riwayatBody = document.getElementById("riwayatBody");
+    const successMsg = document.getElementById("successMsg");
+
+    form?.addEventListener("submit", e => {
+      e.preventDefault();
+      const nama = document.getElementById("nama").value;
+      const topik = document.getElementById("topik").value;
+      const now = new Date();
+      const tanggal = now.toLocaleDateString("id-ID", { day: "2-digit", month: "short", year: "numeric" });
+      const jam = now.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" });
+
+      const tr = document.createElement("tr");
+      tr.classList.add("border-b","border-slate-800");
+      tr.innerHTML = `<td class="py-2">${tanggal} ${jam}</td><td>${nama}</td><td>${topik}</td><td class="text-right text-green-400">Berhasil</td>`;
+      riwayatBody.prepend(tr);
+
+      form.classList.add("hidden");
+      successMsg.classList.remove("hidden");
+      form.reset();
+    });
+
+    // Chart.js Real-time simulation
+    const ctx = document.getElementById('financeChart').getContext('2d');
+    const data = {
+      labels: Array.from({length:12}, (_,i)=>`Bulan ${i+1}`),
+      datasets: [{
+        label: 'Investasi ($)',
+        data: Array.from({length:12}, ()=>Math.floor(Math.random()*5000)+5000),
+        borderColor: '#3b82f6',
+        backgroundColor: 'rgba(59,130,246,0.3)',
+        tension: 0.4,
+        fill: true,
+      }]
+    };
+    const config = { type: 'line', data: data, options:{ responsive:true, plugins:{ legend:{ labels:{ color:'#e2e8f0' } } }, scales:{ x:{ ticks:{ color:'#e2e8f0' } }, y:{ ticks:{ color:'#e2e8f0' } } } } };
+    const financeChart = new Chart(ctx, config);
+
+    // Update chart data real-time simulation setiap 5 detik
+    setInterval(() => {
+      financeChart.data.datasets[0].data.shift();
+      financeChart.data.datasets[0].data.push(Math.floor(Math.random()*5000)+5000);
+      financeChart.update();
+    },5000);
+  </script>
+
+</body>
+</html>
